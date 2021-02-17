@@ -1,0 +1,120 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+
+
+{% block content %}
+<style>
+.button {
+  border: none;
+  color: white;
+  padding: 2px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 2px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: #e5e9ec;
+  color: black;
+  border: 2px solid #4CAF50;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 12px;
+}
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+
+}
+
+.button2 {
+  background-color: #e5e9ec;
+  color: black;
+  border: 2px solid #3d8c40;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 12px;
+}
+
+.button2:hover {
+  background-color: #3d8c40;
+  color: white;
+}
+
+</style>
+<div class="card  ">
+
+       <div class="card-header">
+         <h5>
+             <b style="color:green">Centralized Token Exchange</b><b>, Round {{player.round_number}}:</b><b style="color:gray"> Choose Your Role</b>
+    </h5>
+
+</div>
+    <div class="card-body">
+
+
+You are in the <b style="color:green"> Token Exchange</b> now and you have:
+        <br>{% if gamma == 1%}
+                &nbsp;&nbsp;&nbsp; &bull; <b>{{player.tokens_end_lump}} Tokens </b>
+             {% else %}
+                &nbsp;&nbsp;&nbsp; &bull; <b>{{player.tokens_end_lump}} Tokens </b>: <b>{{player.tokens_end}} Tokens</b> + <b style="color:orange">{{player.interest}} Tokens ({{interest_rate}}%) </b> as interest - tax of <B style="color:red">{{subsession.lump_sum}} Tokens </B>
+            {% endif %}
+        <br>
+
+                &nbsp;&nbsp;&nbsp; &bull; <b>{{payoff_aux}} Points</b>
+<br>
+        <i> On average players hold <b>{{Constants.token_endowment}} Tokens</b> each </i>
+
+<br>
+<br>
+
+
+{% if player.tokens_end_lump < 0%}
+  <div class="card bg-light ">
+                        <div class="card-header">
+     <b> Since you don't have any <b>Tokens</b>, for  the rest of this round you'll have to be a:</b>
+
+</div>
+           <div class="card-body">
+
+<div><center>
+ <!--   <button name="choose" class="button button1" value="Buyer" aria-disabled=><b><h5>Token Seller</h5></b> (sell some of your <b>Tokens</b> to earn <b>Points</b>)
+    </button>
+    <br><br> -->
+    <button name="choose" class="button button2" value="Seller"><b><h5>Token Buyer </h5></b> (use some of your <b>Points</b> to bid for <b>Tokens</b>)</button>
+</center>
+
+
+
+{% else %}
+   <div class="card bg-light ">
+                        <div class="card-header">
+     <b> For  the rest of this round would you like to be a:</b>
+
+</div>
+           <div class="card-body">
+
+<div><center>
+    <button name="choose" class="button button1" value="Buyer"><b><h5>Token Seller</h5></b> (sell some of your <b>Tokens</b> to earn <b>Points</b>)
+    </button>
+    <br><br>
+    <button name="choose" class="button button2" value="Seller"><b><h5>Token Buyer </h5></b> (use some of your <b>Points</b> to bid for <b>Tokens</b>)</button>
+</center>
+    {% endif %}
+</div>
+</div>
+   </div>
+    </div>
+</div>
+<br>
+
+
+
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
+{% endblock %}

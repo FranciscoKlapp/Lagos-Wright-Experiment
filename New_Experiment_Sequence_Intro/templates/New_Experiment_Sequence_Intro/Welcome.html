@@ -1,0 +1,57 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+   <b style="color:gray">Welcome!</b>
+{% endblock %}
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          color:black;
+          background-color: #e5e9ec;
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+  background-color:  gray;
+  color: white;
+   border: 2px solid black;
+    }
+</style>
+
+<div class="card bg-light ">
+
+       <div class="card-header">
+         <h5>
+        Welcome to this experiment in the economics of decision making:
+    </h5>
+
+</div>
+    <div class="card-body">
+
+
+
+        &bullet;  During today’s session, you and <b> {{other_participants}}  other participants</b> will be called upon to make a series of consuming, producing, buying and selling decisions
+<br>
+<br>
+        &bull;   On top of your <b>US$7 show up payment</b> you can earn more if you follow the instructions carefully and make good decisions
+<br>
+<br>
+        &bull;    The amount will be paid  to you electronically at the end of the experiment
+<br>
+<br>
+        &bull;   Please plan on staying on your computer for the <b>next 90 to 120 minutes</b>
+<br>
+<br>
+        &bull;   <b> Avoid closing this current tab </b> though you can always use the provided link to return to the experiment
+
+
+
+
+</div>
+</div>
+<br>
+    {% next_button %}
+
+{% endblock %}
+

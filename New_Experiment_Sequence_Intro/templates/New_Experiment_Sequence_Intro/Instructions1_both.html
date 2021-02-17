@@ -1,0 +1,79 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+
+{% block title %}
+   <b style="color:gray">Instructions:  </b>
+{% endblock %}
+
+
+
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          color:black;
+          background-color: #e5e9ec;
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+  background-color:  gray;
+  color: white;
+  border: 2px solid black;
+    }
+</style>
+
+<div class="card ">
+    <div class="card-header">       <h5>
+       General Overview I - Sequences and Rounds
+    </h5>
+</div>
+
+    <div class="card-body">
+
+        &bull;   Each participant will make decisions in a number of <b><i>sequences</i></b>
+<br>
+<br>
+        &bull;  Each sequence consists of an unknown number of <b><i>rounds</i></b>
+<br>
+<br>
+        &bull;   Each round consists of  two <i>parts</i>:  the <b style="color:blue"> Decentralized Goods Market </b>  and the <b style="color:green"> Centralized Token Exchange
+    </b>
+<br>
+<br>
+        &bull;   At the end of each two-part round, a "virtual" die is rolled: <img src="https://i.imgur.com/fTbdpBx.jpgde" width=6% height=6% style="border-radius: 12px; border: 1px solid gray"> <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8594; if the outcome is 1,2,3,4 or 5, then the sequence continues for round period<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8594;  but if it lands on 6, then the sequence stops<br><br>
+        That is, on average <b>5 out of 6 times -or 83.3% of the times-</b>  the sequence will keep going
+
+<br>
+<br>
+                &bull;   Once a sequence stops, if there is enough time a new sequence will start.
+<br>
+<br>
+         <div class="card  ">
+<div class="card-header">
+    <b>The following image represents a single sequence:</b>
+</div>
+        <div class="card-body">
+
+           <center>    <img src="https://i.imgur.com/04M9WRS.png" width=100% height=100% >  </center>
+</div>
+         </div>
+
+
+
+
+</div>
+
+
+
+</div>
+</div>
+<br>
+    {% next_button %}
+
+{% endblock %}
+
+

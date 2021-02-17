@@ -1,0 +1,49 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+
+{% block title %}
+     <img src="https://i.imgur.com/JkmF3BT.jpg" width=8% height=8%/> <b style="color:gray">The sequence has ended....</b>
+{% endblock %}
+
+
+
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          color:black;
+          background-color: #e5e9ec;
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+  background-color:  gray;
+  color: white;
+   border: 2px solid black;
+    }
+</style>
+<div class="card bg-light ">
+    <div class="card-header">       <h5>
+        A 6 was rolled so the current sequence stopped
+</div>
+
+    <div class="card-body">
+    <h5>  <b style="color:gray">  In this sequence: </b> </h5>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull; You earned <b>{{participant.payoff}} Points</b>  plus your initial <b>{{Constants.point_endowment}} Points</b> that is <b>{{total}} Points</b> for this sequence (which would increase your final payment by  <b>US$ {{real_money}}</b> if this is one of the randomly selected sequences)
+        <br>
+        <br>
+                &nbsp;&nbsp;&nbsp;&nbsp; &bull; At the end of the sequence you were holding <b> {{player.tokens_end_end}} Tokens</b> which are now <b>USELESS</b>
+        <br>
+        <br>
+    <h5>  <b style="color:gray">  But there's more time so the experiment continues for another sequence</b> </h5>
+
+</div>
+</div>
+<br>
+    {% next_button %}
+
+{% endblock %}
+
+

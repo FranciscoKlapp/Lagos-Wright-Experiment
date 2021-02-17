@@ -1,0 +1,36 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+   <b style="color:gray">Instructions: </b>
+{% endblock %}
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          color:white;
+          background-color: #4CAF50; //#e5e9ec;
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+  background-color:  #3d8c40;
+  color: white;
+  border: 2px solid black;
+    }
+</style>
+
+
+
+<div class="card bg-light ">
+
+       <div class="card-header">
+         <h4><center>
+ <b style="color:green"> Centralized Token Exchange </b> —second part of each period:
+    </h4></center>
+
+       </div></div>
+<br>
+    {% next_button %}
+
+
+{% endblock %}

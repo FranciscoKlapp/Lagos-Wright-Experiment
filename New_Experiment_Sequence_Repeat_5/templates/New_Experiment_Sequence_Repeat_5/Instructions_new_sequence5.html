@@ -1,0 +1,49 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+
+{% block title %}
+   <b style="color:gray">Lets start a new sequence!</b>
+{% endblock %}
+
+
+
+{% block content %}
+
+<style>
+    .otree-btn-next {
+          color:black;
+          background-color: #e5e9ec;
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+  background-color:  gray;
+  color: white;
+    }
+</style>
+
+<div class="card bg-light ">
+    <div class="card-header">       <h5>
+        You will now enter the first round of your <b>5th sequence</b>:
+    </h5>
+</div>
+
+    <div class="card-body">
+      <h5>  <b style="color:gray">  Remember:</b> </h5>
+        Again you'll start with:
+
+     <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull;  <b>{{Constants.token_endowment}} Tokens</b>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull; <b>{{Constants.point_endowment}} Points </b>
+
+</div>
+</div>
+<br>
+
+    {% next_button %}
+
+{% endblock %}
+
+

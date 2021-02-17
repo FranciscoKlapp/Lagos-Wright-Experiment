@@ -1,0 +1,343 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+{% block title %}   <b style="color:gray">Practice Quiz 2 - Question 3  </b> {% endblock %}
+{% block content %}
+<style>
+    .otree-btn-next {
+          color:white;
+          background-color: #4CAF50; //#e5e9ec;
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+  background-color:  #3d8c40;
+  color: white;
+  border: 2px solid black;
+    }
+
+
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+.slidecontainer2 {
+  width: 75%;
+}
+
+.slider2 {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider2:hover {
+  opacity: 1;
+}
+
+.slider2::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 10%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider2::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+        .highcharts-figure, .highcharts-data-table table {
+    min-width: 300px;  //360px
+    max-width: 800px;
+    margin: 1em auto;
+}
+
+.highcharts-data-table table {
+	font-family: Verdana, sans-serif;
+	border-collapse: collapse;
+	border: 1px solid #EBEBEB;
+	margin: 10px auto;
+	text-align: center;
+	width: 100%;
+	max-width: 500px;
+}
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+.highcharts-data-table th {
+	font-weight: 600;
+    padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+    padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+
+    input[type=text]:disabled {
+  background: white;
+}
+
+
+
+</style>
+
+<div class="card ">
+
+       <div class="card-header">
+         <h5>
+             <b style="color:green">Token Exchange Quiz</b>: Suppose you are a Token Seller
+    </h5>
+
+</div>
+    <div class="card-body">
+For this <b style="color:green">Practice Token Exchange </b> round suppose you selected to be a <b>Token Seller</b>:
+        <br>   <br>
+        &nbsp;&nbsp;&nbsp; &bull; Imagine you have <b>20 Tokens</b> and want to enter the next round with only <b>12 Tokens</b>
+       <br><br>
+        &nbsp;&nbsp;&nbsp; &bull; You also expect the <i><b style="color:green">Market Price</b></i> to be <b>2 Tokens per Point</b> (which does not affect how many <b>Tokens</b> to offer in this example)
+       <br><br>
+
+        <i> <b style="color:red">  &nbsp;&nbsp;&nbsp;  Tip:</b>  You can use  both sliders on the left side to help you calculate. On the right side you'll have the history of the <b style="color:green">Market Price</b>  </i>
+<div class="card-deck">
+
+   <div class="card bg-light ">
+                        <div class="card-header">
+                            <b> How many <b>Tokens</b> would you'd like to sell?</b>
+
+
+</div>
+           <div class="card-body">
+
+<div class="slidecontainer">
+  <input type="range" min="0" step='0.1' max="20"  value="0" class="slider" id="myRange1" name="quiz_cm_bid">
+     <label for="myRange1"></label>
+    Your <b>Token</b> offer: <input type="text" id="demo1" style="width: 4em" onkeypress="return event.keyCode != 13;" disabled> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+</div>
+
+<br>
+<br>
+
+               <b style="color:gray"> REMEMBER:</b> How many <b>Points</b> you get will depend on Market Price, you can use the 2nd slider to inform your decision
+               <br>       <br>
+
+<center>
+<div class="slidecontainer2">
+  <input type="range" min="0" step='0.1' max='{{Constants.max_price_prediction}}'  value="0" class="slider2" id="myRange2" name="quiz_prediction1">
+     <label for="myRange2"></label>
+    Your <b> Market Price Forecast (Tokens per Point):</b> <input type="text" id="demo2" style="width: 4em" onkeypress="return event.keyCode != 13;" disabled>
+
+</div>
+    <br>
+    <br>
+</center>
+
+    <table class="table">
+  <tr>
+      <td><b>Points</b> given the predicted <i><b style="color:green">Market Price</b></i>:</td>  <td><b><span id="ConsumerB"> </span></b> </td>
+  </tr>
+</table>
+
+
+</div>
+   </div>
+
+
+<div class="card">
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<figure class="highcharts-figure">
+    <div id="container"></div>
+    <p class="highcharts-description">
+
+    </p>
+</figure>
+    </div>
+
+</div>
+</div>
+
+
+</div>
+
+
+
+<script>
+var slider = document.getElementById("myRange1");
+var output = document.getElementById("demo1");
+
+var slider2 = document.getElementById("myRange2");
+var output2 = document.getElementById("demo2");
+var ConsumerB = document.getElementById("ConsumerB");
+
+
+function Y(a, b) {
+return a/b;
+}
+
+
+
+slider.oninput = function() {
+ output.value = this.value;
+ if (parseFloat(slider.value) > 0 && parseFloat(slider2.value) > 0){
+ ConsumerB.innerHTML = Y(parseFloat(slider.value), parseFloat(slider2.value)).toFixed(2);
+ } else if (parseFloat(slider.value) == 0 && parseFloat(slider2.value) > 0) {
+ ConsumerB.innerHTML = "Use 1st slider to sell Tokens";
+} else{
+ConsumerB.innerHTML = "Use 2nd slider to make prediction";
+}
+
+}
+
+slider2.oninput = function() {
+ output2.value = this.value;
+ if (parseFloat(slider.value) > 0 && parseFloat(slider2.value) > 0){
+ ConsumerB.innerHTML = Y(parseFloat(slider.value), parseFloat(slider2.value)).toFixed(2);
+ } else if (parseFloat(slider.value) == 0 && parseFloat(slider2.value) > 0) {
+ ConsumerB.innerHTML = "Use 1st slider to sell Tokens";
+} else{
+ConsumerB.innerHTML = "Use 2nd slider to make prediction";
+}
+
+}
+
+
+
+
+
+    Highcharts.chart('container', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: 'Market Price History'
+    },
+    subtitle: {
+        text: 'Actual Price'
+    },
+    xAxis: {
+        categories: ['3 rounds ago', '2 rounds ago', 'previous round']
+    },
+    yAxis: {
+        title: {
+            text: 'Tokens per Point'
+        }
+    },
+    plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: true
+            },
+            enableMouseTracking: true
+        }
+    },
+    series: [{
+        name: '',
+        data: []
+    }, {
+        name: 'Actual Market Price',
+        data: [3,1,2]
+    }]
+
+
+    });
+
+</script>
+
+</div>
+<br>
+{% next_button %}
+<!--  <b>Note</b>: You can check the <b>Points</b> table for this round at the bottom of this screen -->
+
+
+
+
+  <!--   <br>
+     <br>
+      <div class="card-deck">
+ <div class="card">
+            <div class="card-body">
+
+
+ <table class="table table-sm" >
+    <thead>
+        <tr>
+            <th>Quantity</th>
+            <th>Consumer's Point Benefit</th>
+            <th>Producer's Point Cost</th>
+            <th>Benefit-Cost (in Points)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>    <CENTER>   0 <br>1 <br> 2 <br> 3<br> 4  <br> 5 <br> 6 <br> 7<br> 8  <br> 9 <br> 10 <br> 11  <br> 12 <br> 13 <br> 14 <br> 15 <br> 16 <br> 17 <br> 18 <br> 19 <br> 20  </CENTER>
+                        </td>
+            <td>      <CENTER>   0 <br>1 <br> 2 <br> 3<br> 4  <br> 5 <br> 6 <br> 7<br> 8  <br> 9 <br> 10 <br> 11  <br> 12 <br> 13 <br> 14 <br> 15 <br> 16 <br> 17 <br> 18 <br> 19 <br> 20  </CENTER>
+                        </td>
+            <td>    <CENTER>   0 <br>1 <br> 2 <br> 3<br> 4  <br> 5 <br> 6 <br> 7<br> 8  <br> 9 <br> 10 <br> 11  <br> 12 <br> 13 <br> 14 <br> 15 <br> 16 <br> 17 <br> 18 <br> 19 <br> 20  </CENTER>
+                        </td>
+            <td>    <CENTER>   0 <br>0<br> 0 <br> 0 <br> 0  <br> 0 <br> 0 <br> 0<br> 0  <br> 0 <br> 0 <br> 0 <br>0 <br>0 <br>0 <br> 0 <br> 0 <br> 0 <br>0 <br>0 <br>0 </CENTER>
+                        </td>
+        </tr>
+
+    </tbody>
+</table>
+         </div>
+        </div>
+        </div>   -->
+{% endblock %}

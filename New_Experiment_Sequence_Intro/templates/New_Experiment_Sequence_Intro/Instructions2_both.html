@@ -1,0 +1,159 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+
+{% block title %}
+   <b style="color:gray">Instructions:  </b>
+{% endblock %}
+
+
+
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          color:black;
+          background-color: #e5e9ec;
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+  background-color:  gray;
+  color: white;
+  border: 2px solid black;
+  }
+
+.btn-info {
+ background-color: #d3d3d3;
+ color: black;
+   border: 2px solid black;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 12px;
+}
+.btn-info:hover {
+  background-color: #708090;
+   border: 2px solid black;
+}
+
+
+</style>
+
+
+<div class="card">
+        <div class="card-header">       <h5>
+        {% if gamma == 1%}
+            General Overview II - Points and Tokens
+                  {% else%}
+            General Overview II - Points, Tokens, Interests and Taxes
+              {% endif %}
+    </h5>
+</div>
+
+    <div class="card-body">
+
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; You will start each of your sequences with an endowment of <b>{{Constants.point_endowment}} Points </b>  and <b>{{Constants.token_endowment}} Tokens</b>:
+<br>
+<br>
+
+<center>
+
+<div class="accordion" id="myAccordion">
+
+
+    <h2 class="mb-0">
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#collapseOne"><b>Points</b> (click here) </button>
+    </h2>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#myAccordion">
+
+           <div class="card bg-light ">
+           <div class="card-body">
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; Your <b>Points</b> do NOT carry over from one sequence to the next but...
+<br>
+<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; at the end of the experiment <b>two sequences will be selected at random</b> and you'll get <b>US${{Constants.exchange_rate}} for each  Point </b> you had (plus your US$7 show up payment)
+<br>
+<br>
+       <h6 style="color:red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; ... so the more <b>Points</b>  you have, the more US$ you'll receive </h6>
+
+
+
+
+</div>
+   </div>
+    </div>
+
+
+<br>
+
+
+    <h2 class="mb-0">
+        <button type="button" class="btn btn-info collapsed" data-toggle="collapse" data-target="#collapseTwo"><b>Tokens</b> (click here) </button>
+    </h2>
+
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#myAccordion">
+
+                   <div class="card bg-light ">
+           <div class="card-body">
+
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; Your <b>Tokens</b> do NOT carry over from one sequence to the next either....
+           <br>
+           <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; and they have NO value in terms of US$ (so when a sequence ends they become worthless)
+            <br>
+<br>
+         <h6 style="color:red">&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&bull; ....however even though they have no redemption value they may help you earn <b>Points</b> when used for exchange (trading) purposes  </h6>
+ <br>
+<br>
+
+  {% if gamma == 1%}
+
+ {% next_button %}
+
+</div>
+</div>
+    </div>
+<br>
+
+      {% else%}
+
+</div>
+</div>
+    </div>
+<br>
+        <h2 class="mb-0">
+        <button type="button" class="btn btn-info collapsed" data-toggle="collapse" data-target="#collapseThree"><b>Taxes and Interests</b> (click here) </button>
+    </h2>
+
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#myAccordion">
+
+                   <div class="card bg-light ">
+           <div class="card-body">
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull;  <b>After the first part of each round</b> you'll receive an <b style="color:orange"> Interest Payment</b> equal to  <b style="color:orange"> {{interest_rate}}% </b> of your <b>Tokens</b> (e.g. if you hold <b>8 Tokens</b> you'll get <b>{{example1}} more</b>)
+    <br>
+    <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; Simultaneously, to finance this everyone must pay a fixed <b style="color:red">tax</b> of <B style="color:red">{{example2}} Tokens </B> in each round ( if you don't hold enough <b>Tokens</b>, you'll be indebted until you can pay)
+<br><br>
+{% next_button %}
+</div>
+</div>
+
+    </div>
+
+
+
+
+
+
+
+      {% endif %}
+
+</div>
+</div>
+
+
+
+{% endblock %}
+
+

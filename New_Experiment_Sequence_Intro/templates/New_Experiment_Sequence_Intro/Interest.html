@@ -1,0 +1,81 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+
+{% block title %}
+   <b style="color:gray">Lets keep making choices!</b>
+{% endblock %}
+
+
+
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          color:black;
+          background-color: #e5e9ec;
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+  background-color:  gray;
+  color: white;
+    }
+</style>
+
+<div class="card bg-light ">
+    <div class="card-header">       <h5>
+        You will now enter the second round (<b style="color:green" >Centralized Market</b>) of the first period:
+    </h5>
+</div>
+
+    <div class="card-body">
+    <h5>  <b style="color:gray">  Remember:</b> </h5>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull;After the first round <b style="color:blue" >(Decentralized Meeting)</b> you have <b>{{player.tokens_end}} Tokens</b>
+        <br>
+        <br>
+        {%if player.payoff >= 0%}
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull; And received a payoff of <b>{{player.payoff1}} Points</b> (on top of your initial endowment)
+        {%else%}
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull; And received a payoff of <b>{{player.payoff1}} Points</b> (on top of your initial endowment)
+        {%endif%}
+        <br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull;You'll now have to choose if you want to be  a <B>Consumer </B> or <b>Producer</b> for this round
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<b>Consumers</b> can bid some <b>Tokens</b> and get some {{Constants.CM_good}}  back (which depends on the resulting market price)
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<b>Producers</b> produce some amount and sell it at the market price
+
+
+
+
+<br>
+
+        &nbsp;&nbsp;&nbsp; &bull; You had <b>{{player.tokens_end}} Tokens</b>, and received <b style="color:red">{{player.interest}} Tokens</b> ({{interest_rate}}%) as interest for them, but everyone had to pay the tax of <B style="color:red">{{subsession.lump_sum}} Tokens </B> so now you have <b>{{player.tokens_end_lump}} Tokens </b>
+<br>
+<br>
+        &nbsp;&nbsp;&nbsp;&bull; And you also currently have  <b>{{payoff_aux}} Points</b>
+<br>
+<br>
+Remember that the total amount of <b>Tokens</b> in this economy is always constant at <b>{{supply}}</b>
+    </div></div>
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+<br>
+    {% next_button %}
+
+{% endblock %}
+
+

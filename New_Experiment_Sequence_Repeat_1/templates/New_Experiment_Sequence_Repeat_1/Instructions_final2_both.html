@@ -1,0 +1,84 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+
+{% block title %}
+   <b style="color:gray">Lets keep making choices!</b>
+{% endblock %}
+
+
+
+
+{% block content %}
+
+<style>
+    .otree-btn-next {
+          color:black;
+          background-color: #e5e9ec;
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+  background-color:  gray;
+  color: white;
+    }
+</style>
+
+
+<div class="card bg-light ">
+    <div class="card-header">       <h5>
+        You will now enter the second part (<b style="color:green" >Centralized Token Exchange</b>) of the first round of your <b>1st Sequence</b>:
+    </h5>
+</div>
+
+    <div class="card-body">
+    <h5>  <b style="color:gray">  Remember:</b> </h5>
+
+        {% if gamma == 1%}
+After the <b style="color:blue" >Goods Market</b> you have:
+
+             <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull;  <b>{{player.tokens_end_lump}} Tokens</b>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull; <b>{{payoff_aux0}} Points</b>: that is <b>{{player.payoff1}} Points</b> on top  of your initial endowment of <b>{{Constants.point_endowment}} Points</b>)
+
+{% else%}
+        You now have:
+        <br>
+
+
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull;  <b> {{player.tokens_end_lump}} Tokens </b>:  <b>{{player.tokens_end}} Tokens</b> after the <b style="color:blue" >Goods Market</b>  <b style="color:orange"> plus  {{player.interest}} Tokens ({{interest_rate}}%)  as interest </b> <B style="color:red">minus a tax of {{subsession.lump_sum}} Tokens </B>       <br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull; <b>{{payoff_aux0}} Points</b>: that is <b>{{player.payoff1}} Points</b> on top  of your initial endowment of <b>{{Constants.point_endowment}} Points</b>
+
+  {% endif %}
+        <br>
+        <br>
+Every participant will now enter the <b style="color:green" >Token Exchange</b> and choose whether to be a <B>Token Seller </B> or <b>Token Buyer</b>:
+
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull;How many <b>Tokens</b> you get as a <b>Token Buyer</b> or <b>Points</b> as a <b>Token Seller</b> depends on the resulting <i><b style="color:green" >Market Price</b></i>
+
+
+
+
+
+
+</div>
+</div>
+  {% if gamma == 1%}
+<br>
+<b style="color:red">Note</b>: the total amount of <b>Tokens</b> in this economy is always constant at <b>{{initial_supply}} Tokens</b>
+{% else%}
+<br>
+<b style="color:red">Note</b>: the total amount of <b>Tokens</b> in this economy is always constant at <b>{{initial_supply}} Tokens</b> and everyone pays a tax of <b>{{subsession.lump_sum}} Tokens</b> to finance interest payments
+  {% endif %}
+<br>
+<br>
+
+
+    {% next_button %}
+
+{% endblock %}
+
+

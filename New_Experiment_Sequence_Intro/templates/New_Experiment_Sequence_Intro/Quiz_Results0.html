@@ -1,0 +1,292 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}<b style="color:gray">Practice Quiz - Question 1: Results</b>
+{% endblock %}
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+     border: 2px solid black;
+    }
+
+slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #1930ff;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #1930ff;
+  cursor: pointer;
+}
+
+.slidecontainer2 {
+  width: 100%;
+}
+
+.slider2 {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider2:hover {
+  opacity: 1;
+}
+
+.slider2::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #1930ff;
+  cursor: pointer;
+}
+
+.slider2::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #1930ff;
+  cursor: pointer;
+}
+
+div c {
+  text-align: right;
+  background-color: yellow;
+}
+
+    .otree-btn-next {
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+     border: 2px solid black;
+    }
+
+
+.btn-info {
+ background-color: #d3d3d3;
+ color: black;
+   border: 2px solid black;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 12px;
+}
+.btn-info:hover {
+  background-color: #708090;
+   border: 2px solid black;
+}
+
+        input[type=text]:disabled {
+  background: white;
+}
+
+
+</style>
+<div class="card bg-light ">
+
+       <div class="card-header">
+         <h5>
+  <h5 style="color:gray">
+        <b style="color:blue">Goods Market</b>
+</div>
+    <div class="card-body">
+
+
+<!IF OK!>
+{% if player.quiz_tokens_DM == 10 and player.quiz_output_DM == 5 %}
+
+
+        &nbsp;&nbsp;&nbsp; &bull;You offered <b>{{player.quiz_tokens_DM}} Tokens</b> for <b>{{player.quiz_output_DM}} units of</b> <i><b style="color:blue">{{Constants.DM_good}}</b></i> <br><br>
+
+        &nbsp;&nbsp;&nbsp; &bull; <b style="color:orange">That is exactly right!</b> Congratulations! <br><br>
+
+        By requesting <b> 5 units of {{Constants.DM_good}}</b> in exchange for <b>10 Tokens</b> you achieved a <b>Price of 2 Tokens per unit</b> and thus you expect you offer to be accepted and earn <b>7.35 Points</b>
+<br><br>
+  <input type="hidden" name="quiz_output_DM_retry" />
+  <input type="hidden" name="quiz_tokens_DM_retry" />
+
+        <script>
+            document.querySelector('[name=quiz_output_DM_retry]').value = 99;
+            document.querySelector('[name=quiz_tokens_DM_retry]').value = 99;
+
+        </script>
+
+    </div> </div>
+
+<br>
+    {% next_button %}
+<! IF MISTAKE!>
+{% else %}
+
+
+        &nbsp;&nbsp;&nbsp; &bull;You offered <b>{{player.quiz_tokens_DM}} Tokens</b> for <b>{{player.quiz_output_DM}} units of</b> <i><b style="color:blue">{{Constants.DM_good}}</b></i>  <br><br>
+
+        &nbsp;&nbsp;&nbsp; &bull; <b style="color:red">That is  NOT correct</b>   <br><br>
+
+      You should have requested  <b>5 units of </b><i><b style="color:blue">{{Constants.DM_good}}</b></i> in exchange for <b>10 Tokens</b> to get <b>7.35 Points</b> and achieve a <b>Price of 2 Tokens per unit</b> <br><br>
+
+
+
+                <center>
+                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo"><b>Try again!</b> (click here)</button>
+                    </center>
+  <div id="demo" class="collapse">
+<div class="card bg-light">
+
+    <div class="card-body">
+
+Use this first slider to make your <i><b style="color:blue">{{Constants.DM_good}}</b></i> request:
+<br>
+<div class="slidecontainer">
+  <input type="range" min="0" step='1' max="20"  value="0" class="slider" id="myRange1" name="quiz_output_DM_retry">
+     <label for="myRange1"></label>
+    Your <i><b style="color:blue">{{Constants.DM_good}}</b></i> <b>request:</b> <input type="text" id="demo1" style="width: 4em" onkeypress="return event.keyCode != 13;" disabled> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+</div>
+<br>
+       And this slider to  select the total number of <b>Tokens</b> you'd like to offer for those units:
+<br>
+   <div class="slidecontainer2">
+  <input type="range" min="0" step='0.1' max="30"  value="0" class="slider2" id="myRange2" name="quiz_tokens_DM_retry">
+     <label for="myRange2"></label>
+       Your <b>Total Token offer</b>: <input type="text" id="demo2" style="width: 4em" onkeypress="return event.keyCode != 13;" disabled> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<br>
+</div>
+ <br>
+
+    <table class="table">
+  <tr>
+      <td><b>Your Point Benefit as a Consumer:</b></td>
+    <td><b>Producer's Point Cost:</b></td>
+      <td> <b>Point Surplus (Benefit-Cost):</b></td>
+      <td> <b>Tokens per Unit:</b></td>
+
+  </tr>
+  <tr>
+      <td><b><ul><li> <span id="ConsumerBenefit"></span> </li>
+          </ul></b></td>
+
+      <td><b><ul><li><span id="Cost"></span>
+          </ul></b></td>
+
+       <td><b><ul><li> <span id="Surplus"></span> </ul></b></td>
+
+      <td><b><ul><li> <span id="WinP2"></span></ul></b></td>
+  </tr>
+</table>
+
+</div>
+<br>
+
+  </div>
+      <br>
+       {% next_button %}
+</div>
+
+
+
+{% endif %}
+
+       <script>
+
+
+
+
+var slider = document.getElementById("myRange1");
+var output = document.getElementById("demo1");
+var Cost = document.getElementById("Cost");
+var ConsumerBenefit = document.getElementById("ConsumerBenefit");
+var Surplus =  document.getElementById("Surplus");
+
+var slider2 = document.getElementById("myRange2");
+var output2 = document.getElementById("demo2");
+
+var winP2 = document.getElementById("WinP2");
+
+var mu = js_vars.mu;
+var eta =js_vars.eta;
+
+
+function myU(a,mu,eta) {
+return (mu*a**eta)/eta;
+}
+
+function myC(a) {
+return a;
+}
+
+function myB(a) {
+return (mu*a**eta)/eta - a;
+}
+
+function Y(a, b) {
+return a/b;
+}
+
+
+slider.oninput = function() {
+ output.value = this.value;
+ConsumerBenefit.innerHTML =  myU(parseFloat(slider.value),mu,eta).toFixed(2);
+Cost.innerHTML = myC(parseFloat(slider.value)).toFixed(2);
+Surplus.innerHTML = myB(parseFloat(slider.value)).toFixed(2);
+ winP2.innerHTML = Y(parseFloat(slider2.value), parseFloat(slider.value)).toFixed(2);
+}
+
+slider2.oninput = function() {
+ output2.value = this.value;
+ winP2.innerHTML = Y(parseFloat(slider2.value), parseFloat(slider.value)).toFixed(2);
+}
+
+
+
+</script>
+
+
+    </div></div>
+<br>
+
+
+
+
+{% endblock %}

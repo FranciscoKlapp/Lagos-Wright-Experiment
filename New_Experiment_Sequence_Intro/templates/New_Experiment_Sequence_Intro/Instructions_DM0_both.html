@@ -1,0 +1,82 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+
+{% block title %}
+   <b style="color:gray">Instructions:</b>
+{% endblock %}
+
+
+
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+     border: 2px solid black;
+
+    }
+
+</style>
+
+
+
+<div class="card bg-light ">
+
+       <div class="card-header">
+         <h4><center>
+   <b style="color:blue">  Decentralized Goods Market </b> —first part of each round:
+    </h4></center>
+
+       </div></div>
+<br>
+
+
+    <div class="card-body">
+
+        <div class="card">
+        <div class="card bg-light ">
+             <div class="card-header"> <h5>
+ <b style="color:blue"> Goods Market </b> — Overview</h5>
+</div>
+        <div class="card-body">
+     <!--       &bull; First part of each <b><i>round</i></b>
+            <br>
+            <br> -->
+            &bull; Pairs of  participants are randomly formed with the option to trade the <i><b style="color:blue">{{Constants.DM_good}}</b></i>
+            <br>
+            <br>
+            &bull;  In each pair, one participant is randomly chosen to be a <b> Consumer</b> and the other a <b>Producer</b>
+            <br>
+            <br>
+            &bull; In each round you'll have a 50/50 chance of being either a <b>Producer</b> or a <b>Consumer</b>
+            {% if treatment == 'endogen' %}
+            {%else%}
+            <br>
+            <br>
+               &bull;<b style="color:red
+">IMPORTANT:</b>
+          The price of the <i><b style="color:blue">{{Constants.DM_good}}</b></i>  in terms of <b>Tokens per unit</b> would be given to you (and will stay the same after the Practice Quiz throughout the experiment)
+
+            {% endif %}
+
+
+</div>
+
+
+
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<br>
+    {% next_button %}
+
+{% endblock %}
+

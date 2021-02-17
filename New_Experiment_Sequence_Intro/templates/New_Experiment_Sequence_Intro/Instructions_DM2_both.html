@@ -1,0 +1,89 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+
+{% block title %}
+   <b style="color:gray">Instructions:</b>
+{% endblock %}
+
+
+
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+     border: 2px solid black;
+
+    }
+
+</style>
+
+
+<div class="card bg ">
+    <div class="card-header">
+         <h5>
+             <b style="color:blue"> Goods Market</b> — Trading the <i><b style="color:blue">Special Good</b>   </i>
+    </h5>
+</div>
+    <div class="card-body">
+
+        <div class="card-deck">
+        <div class="card">
+             <div class="card-header">
+                 First, each <b>Consumer</b>  makes a <b>"take-it-or-leave-it"</b> offer to their counterpart requesting some amount of <i><b style="color:blue">{{Constants.DM_good}}</b> </i> in exchange for <b>Tokens</b>
+
+</div>
+        <div class="card-body">
+            &bull; <b> Consumers</b> can get <b>Points</b> from buying the <i><b style="color:blue">{{Constants.DM_good}}</b></i> but give up the offered <b>Tokens</b>
+            <br>
+            <br>
+            &bull; <b>Producers</b> would incur a cost of  <b>1 Point per unit</b> of <i><b style="color:blue">{{Constants.DM_good}}</b></i> produced but receive <b>Tokens</b>
+              <center>
+                <br>
+                <br>
+              <img src="https://i.imgur.com/oQsPtLU.png" width=100% height=100% />
+</center>
+
+
+
+</div>
+ </div>
+
+    <div class="card ">
+             <div class="card-header">
+                 Then, each <b>Producer</b> must decide whether to <b>“Accept”</b> or <b>“Reject”</b> their counterpart's proposal:
+
+</div>
+        <div class="card-body">
+                 &bull; If a <B> Producer "Accepts"</b>, the proposed exchange takes place
+            <br> <br>
+            &bull; If a <b> Producer "Rejects"</b> , then no trade takes place (no change in <b>Points</b> or <b>Tokens</b> holdings).
+              <center>
+                <br>
+                <br>
+                  <br> <br> <br>
+
+              <img src="https://i.imgur.com/0nIJ7wz.png" width=100% height=100% />
+</center>
+</div>
+</div>
+</div>
+
+
+    </div>
+</div>
+</div>
+
+<br>
+
+Next we'll see how many <b>Points</b> <b>Consumers</b> get from the <i><b style="color:blue">{{Constants.DM_good}}</b></i> and how many <b>Points</b> it costs <b>Producers</b>
+<br>
+<br>
+    {% next_button %}
+
+{% endblock %}
+

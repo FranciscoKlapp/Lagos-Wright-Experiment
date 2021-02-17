@@ -1,0 +1,92 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+
+{% block title %}
+   <b style="color:gray">Instructions: </b>
+{% endblock %}
+
+
+
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          color:black;
+          background-color: #e5e9ec;
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+  background-color:  gray;
+  color: white;
+  border: 2px solid black;
+    }
+</style>
+
+
+
+<div class="card bg ">
+            <div class="card-header">       <h5>
+        General Overview III - Round Structure (we are getting there...)
+    </h5>
+</div>
+
+    <div class="card-body">
+
+
+
+        &bull; Each round will consist of two parts:
+        <br>
+        <br>
+        <div class="card-deck">
+        <div class="card bg-light ">
+             <div class="card-header">
+     <b> In the first part of each round:</b>
+
+</div>
+        <div class="card-body">
+        <center> The {{session.num_participants}} participants will be randomly and anonymously matched in {{pairs}} pairs and interact 1-on-1 in <b style="color:blue">Decentralized Goods Market</b> to trade the <i><b style="color:blue">Special Good</b></i>
+        <br>
+            <br>
+            <b style="color:black"> --> This is where NEW additional <b>Points</b> (Surpluses) are created by trading!</b>
+        </center>
+</div>
+</div>
+
+
+    <div class="card bg-light ">
+                     <div class="card-header">
+     <b> In the second and final part of each round:</b>
+
+</div>
+        <div class="card-body">
+     <center> All {{session.num_participants}} participants will interact together
+         in a <b style="color:green">Centralized Token Exchange</b> and trade <b>Points</b> for <b>Tokens</b> directly
+     <br>
+         <br>
+         <br>
+         <br>
+       <b style="color:black">  --> This is where you can adjust your <b>Token</b> holdings for the next round but where NO NEW additional <b>Points</b> are created! </b> </center>
+</div>
+</div>
+
+
+
+
+
+
+</div>
+</div>
+</div>
+
+<br>
+ <center> We will now describe in detail what happens in each of these two parts of a
+     round</center>
+<br>
+<br>
+{% next_button %}
+
+{% endblock %}
+
+

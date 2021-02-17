@@ -1,0 +1,67 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+
+{% block title %}
+   <b style="color:gray">Lets get started!</b>
+{% endblock %}
+
+
+
+{% block content %}
+
+<style>
+    .otree-btn-next {
+          color:black;
+          background-color: #e5e9ec;
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+  background-color:  gray;
+  color: white;
+    }
+</style>
+
+<div class="card bg-light ">
+    <div class="card-header">       <h5>
+        You will now enter the first part (<b style="color:blue" >Goods Market</b>) of the first round of your <b>1st Sequence</b>:
+    </h5>
+</div>
+
+    <div class="card-body">
+      <h5>  <b style="color:gray">  Remember:</b> </h5>
+        You'll now start with:
+
+     <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull;  <b>{{Constants.token_endowment}} Tokens</b>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull; <b>{{Constants.point_endowment}} Points </b>
+         <br>
+        <br>
+       You'll meet someone at random and then become either a <B> Consumer </B> or a  <b>Producer</b>:
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull;<b>Consumers</b> make an offer to their counterpart (offer some  <b>Tokens</b> in exchange for some <i><b style="color:blue">{{Constants.DM_good}}</b></i>)
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull;<b>Producers</b> either <i><b>Accept</b></i> or <i><b>Reject</b></i> said offer
+        <br>
+        <br>
+        {%if treatment == 'exogen' %}
+            {% if gamma == 1 %}
+            <br>
+         &bull; <b style="color:red">IMPORTANT:</b> The price of the <i><b style="color:blue">{{Constants.DM_good}}</b></i> will be <b> 5 Tokens per unit</b> throughout the rest of the experiment
+            {% else %}
+         &bull; <b style="color:red">IMPORTANT:</b> The price of the <i><b style="color:blue">{{Constants.DM_good}}</b></i> will be <b> 1.11 Tokens per unit</b> throughout the rest of the experiment
+            {%endif%}
+        {% else %}
+        <br>
+        {%endif%}
+    </div>
+</div>
+<br>
+
+    {% next_button %}
+
+{% endblock %}
+
+

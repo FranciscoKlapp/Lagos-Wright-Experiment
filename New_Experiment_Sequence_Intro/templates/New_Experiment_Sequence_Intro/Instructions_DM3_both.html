@@ -1,0 +1,244 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+
+{% block title %}
+   <b style="color:gray">Instructions:</b>
+{% endblock %}
+
+
+
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+     border: 2px solid black;
+    }
+
+.slidecontainer {
+  width: 80%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #1930ff;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #1930ff;
+  cursor: pointer;
+}
+.btn-info {
+ background-color: #d3d3d3;
+ color: black;
+   border: 2px solid black;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 12px;
+}
+.btn-info:hover {
+  background-color: #708090;
+   border: 2px solid black;
+}
+
+        input[type=text]:disabled {
+  background: white;
+}
+
+
+//  background-color: blue;
+//  color: white;
+//  cursor: pointer;
+//  padding: 18px;
+//  width: 100%;
+//  border: none;
+//  text-align: left;
+//  outline: none;
+//  font-size: 15px;
+
+
+
+
+</style>
+
+
+
+<div class="card bg ">
+    <div class="card-header">
+         <h5>
+                     <b style="color:blue"> Goods Market</b> — Benefits and Costs
+    </h5>
+</div>
+    <div class="card-body">
+        &bull; If selected to be a <b>Consumer</b> you'll use a slider (like the one below) to make your <i><b style="color:blue">{{Constants.DM_good}}</b></i> request.
+        <br>
+        <br>
+        &bull; If selected to be <b>Producer</b> you'll just decide whether to <b>Accept</b> or <b>Reject</b>
+        <br>
+        <br>
+        &bull; The <b>Consumer's</b> benefit and <b>Producer's</b> cost (in <b>Points</b>) associated to a request -if accepted- will be always automatically displayed below <br> <br>
+
+
+        <center>
+  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo"><b>Check this example using the slider</b> (click here)</button>
+  <div id="demo" class="collapse">
+<div class="card bg-light">
+    <div class="card-body">
+<center> A  <b>Consumer</b> buying 5 units of <i><b style="color:blue">{{Constants.DM_good}}</b></i> would get a benefit of <b>{{uq5}} Points</b> while
+    the <b>Producer</b>  incurs a cost of <b>5 Points</b>. Thus, the Surplus from that trade is <b>{{net_uq5}} Points.</b> <br><br>
+    Did you get the same numbers?
+
+    <br><br>
+     {% next_button %}
+
+</div>
+
+  </div>
+</center>
+
+        <br>
+
+        <div class="card bg-light">
+            <br>
+            <center>
+        <div class="slidecontainer">
+  <input type="range" min="0" step='1' max="20"  value="0" class="slider" id="myRange1" name="instructions_DM">
+     <label for="myRange1"></label>
+   Your <i><b style="color:blue">{{Constants.DM_good}}</b></i> <b> request</b> :  <input type="text" id="demo1" style="width: 4em" onkeypress="return event.keyCode != 13;" disabled> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+</div>
+<br>
+            <table class="table">
+  <tr>
+<td><b>Consumer's Point Benefit:</b></td>
+      <td><b>Producer's Point Cost:</b></td>
+      <td><b> Trade Surplus (Benefit minus Cost):</b></td>
+
+
+  </tr>
+  <tr>
+      <td><b><ul><li> <span id="ConsumerBenefit"></span> </li></ul></b></td>
+
+      <td><b><ul><li><span id="Cost"></span></ul></b></td>
+
+
+      <td> <b><ul><li> <span id="Surplus"></span> </ul></b></td>
+
+  </tr>
+</table>
+                </center>
+</div>
+
+
+
+</div>
+<!--
+        <br>
+        <br>
+        <div class="card-deck">
+ <div class="card">
+            <div class="card-body">
+
+
+ <table class="table table-sm" >
+    <thead>
+        <tr>
+            <th>Quantity</th>
+            <th>Consumer's Point Benefit</th>
+            <th>Producer's Point Cost</th>
+            <th>Benefit minus Cost (in Points)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>    <CENTER>   0 <br>1 <br> 2 <br> 3<br> 4  <br> 5 <br> 6 <br> 7<br> 8  <br> 9 <br> 10 <br> 11  <br> 12 <br> 13 <br> 14 <br> 15 <br> 16 <br> 17 <br> 18 <br> 19 <br> 20  </CENTER>
+                        </td>
+            <td>    <CENTER>   {{uq0}} <br>{{uq1}} <br> {{uq2}} <br> {{uq3}} <br> {{uq4}}  <br> {{uq5}} <br> {{uq6}} <br> {{uq7}}<br> {{uq8}}  <br> {{uq9}} <br> {{uq10}} <br> {{uq11}} <br>{{uq12}} <br>{{uq13}} <br>{{uq14}} <br> {{uq15}} <br> {{uq16}} <br> {{uq17}} <br>{{uq18}} <br>{{uq19}} <br>{{uq20}} </CENTER>
+                        </td>
+            <td>    <CENTER>   0 <br>1 <br> 2 <br> 3<br> 4  <br> 5 <br> 6 <br> 7<br> 8  <br> 9 <br> 10 <br> 11  <br> 12 <br> 13 <br> 14 <br> 15 <br> 16 <br> 17 <br> 18 <br> 19 <br> 20  </CENTER>
+                        </td>
+            <td>    <CENTER>   {{net_uq0}} <br>{{net_uq1}} <br> {{net_uq2}} <br> {{net_uq3}} <br> {{net_uq4}}  <br> {{net_uq5}} <br> {{net_uq6}} <br> {{net_uq7}}<br> {{net_uq8}}  <br> {{net_uq9}} <br> {{net_uq10}} <br> {{net_uq11}} <br>{{net_uq12}} <br>{{net_uq13}} <br>{{net_uq14}} <br> {{net_uq15}} <br> {{net_uq16}} <br> {{net_uq17}} <br>{{net_uq18}} <br>{{net_uq19}} <br>{{net_uq20}} </CENTER>
+                        </td>
+        </tr>
+
+    </tbody>
+</table>
+         </div>
+        </div>
+        </div>
+        </div>
+</div>
+</div>
+
+
+<br> -->
+
+<script>
+
+var slider = document.getElementById("myRange1");
+var output = document.getElementById("demo1");
+var Cost = document.getElementById("Cost");
+var ConsumerBenefit = document.getElementById("ConsumerBenefit");
+var Surplus =  document.getElementById("Surplus");
+
+
+var mu = js_vars.mu;
+var eta =js_vars.eta;
+
+
+function myU(a,mu,eta) {
+return (mu*a**eta)/eta;
+}
+
+function myC(a) {
+return a;
+}
+
+function myB(a) {
+return (mu*a**eta)/eta - a;
+}
+
+
+slider.oninput = function() {
+ output.value = this.value;
+ConsumerBenefit.innerHTML =  myU(parseFloat(slider.value),mu,eta).toFixed(2);
+Cost.innerHTML = myC(parseFloat(slider.value)).toFixed(2);
+Surplus.innerHTML = myB(parseFloat(slider.value)).toFixed(2);
+
+}
+
+
+
+
+</script>
+
+
+{% endblock %}
+

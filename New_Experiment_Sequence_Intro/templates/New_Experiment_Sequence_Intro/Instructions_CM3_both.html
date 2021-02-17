@@ -1,0 +1,86 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+   <b style="color:gray">Instructions:</b>
+{% endblock %}
+
+
+
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          color:white;
+          background-color: #4CAF50; //#e5e9ec;
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+  background-color:  #3d8c40;
+  color: white;
+  border: 2px solid black;
+    }
+
+
+
+
+</style>
+<div class="card  ">
+            <div class="card-header">       <h5>
+        <b style="color:green">Token Exchange </b> — Market Price Determination
+    </h5>
+</div>
+    <div class="card-body">
+
+        <div class="card-deck">
+        <div class="card  ">
+             <div class="card-header">
+                After everyone decides how many <b>Tokens</b> to to sell or <b>Points </b> to offer, the  <i><b style="color:green">Market Price</b></i> is computed as follows:
+             </div>
+        <div class="card-body">
+
+            &bull; <i><b style="color:green">Market Price</b></i> = (Total amount of <b>Tokens</b> for sale) &divide (Total amount of offered <b>Points</b>)
+<br><br><br>
+
+
+            <center>
+                <img src="https://i.imgur.com/jMbOuOe.png" width=100% height=100% />
+
+</center>
+</div>
+        </div>
+
+
+
+
+    <div class="card ">
+                     <div class="card-header">
+                         Then, given the <i><b style="color:green">Market Price</b></i> participants get:
+</div>
+        <div class="card-body">
+
+            &bull; <b>Token Sellers</b> get --> <b>Points</b> = Their offered <b>Tokens</b> &divide <i><b style="color:green">Market Price</b></i>
+            <br>
+            <br>
+            &bull;  <b>Token Buyers</b> get --> <b>Tokens</b> = Their offered <b>Points</b> &times   <i><b style="color:green">Market Price</b></i>
+            <br>
+            <br>
+            <center>
+                   <img src="https://i.imgur.com/5WcI8kN.png" width=100% height=100% />
+              <!-- <img src="https://i.imgur.com/oQDwjIS.jpg" width=100% height=100% /> -->
+</center>
+
+
+</div>
+        </div>
+
+
+    </div>
+</div>
+</div>
+
+<br>
+    {% next_button %}
+
+{% endblock %}
+

@@ -1,0 +1,282 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+
+    <style>
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slidecontainer2 {
+  width: 100%;
+}
+
+.slider2 {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider2:hover {
+  opacity: 1;
+}
+
+.slider2::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider2::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+div.c {
+  text-align: right;
+}
+</style>
+
+Round Number {{ subsession.round_number }} of {{ Constants.num_rounds }}<br/>
+<h3 align=center><font color="blue">Period 1</font></H3>
+<font size="3">
+<div style="border: thin solid black">  <table>
+    <tr><td><b>You:</b> 1 point of bid = <b><font color="purple">1 Purple ball</font></b> in the Bid Bag.
+    <br/><b>The other participant:</b> 1 point of bid = <b><font color="green">1 Green ball</font></b> in the Bid Bag.
+    </td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;One ball will be drawn at random to determine<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the winner of 100 points.</td></tr>
+</table></div>
+<br>
+<br>Use the sliders or boxes below to choose your prediction of the other participant's bid and your own bid:
+<br>
+<div class="slidecontainer">
+  <input type="range" min="0" max="100"  value="0" class="slider" id="myRange1" name="Perceived_investment">
+    <p>Prediction of other participant's Bid: <input type="number" id="demo1" style="width: 4em" onkeypress="return event.keyCode != 13;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    </p>
+</div>
+<br>
+<div class="slidecontainer2">
+  <input type="range" min="0" max="100" value="0" class="slider2" id="myRange2" name="investment">
+  <p>Choose your Bid: <input type="number" id="demo2" style="width: 4em" onkeypress="return event.keyCode != 13;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp;
+    <br/>You keep = <span id="keep"></span> points<br/>
+  </p>
+</div>
+   <p><font size = 5> If the other participant bids what you predicted, then:</font> <br/>
+
+    <table class="table">
+  <tr>
+<td>There is <b><span id="WinP"></span>% chance</b> of the following:</td>
+    <td>And <b><span id="NegPDiff"></span>% chance</b> of the following:</td>
+  </tr>
+  <tr>
+      <td><ul><li>You win and your period 1 payoff is <b><span id="winPay"></span> points</b> (Prize + what you keep)</li>
+          <!--<li>The other participant's period 1 payoff is <span id="othLosePay"></span> points (what they keep)</li>-->
+          </ul></td>
+       <td><ul><li>Your period 1 payoff is <b><span id="winLose"></span> points</b> (what you keep)</li>
+          <!-- <li>The other participant wins and his/her period 1 payoff is <span id="othWinPay"></span> points (Prize + what they keep)</li>-->
+          </ul></td>
+  </tr>
+</table>
+</font>
+
+
+<script>
+
+
+
+
+var slider = document.getElementById("myRange1");
+var output = document.getElementById("demo1");
+var winP = document.getElementById("WinP");
+var NegpaD = document.getElementById("NegPDiff");
+var slider2 = document.getElementById("myRange2");
+var output2 = document.getElementById("demo2");
+var keep = document.getElementById("keep");
+var winPay = document.getElementById("winPay");
+var winLose = document.getElementById("winLose");
+var othWinPay = document.getElementById("othWinPay");
+var othLosePay = document.getElementById("othLosePay");
+var othkeep = document.getElementById("othkeep");
+
+function Y(a, b) {
+return 100*b/(a + b);
+}
+
+function negY(a, b) {
+return 100*a/(a + b);
+}
+
+function myFunction(a, b) {
+return 100*b/(b + a);
+}
+
+function negmyFunction(a, b) {
+return 100*a/(b + a);
+}
+
+function K(a) {
+    return 100-a;
+}
+function W(a) {
+    return 200-a;
+}
+
+function othA(a) {
+    return a;
+}
+
+function othB(a) {
+    return a;
+}
+
+
+slider.oninput = function() {
+ output.value = this.value;
+if(output2.value != ""){if (parseInt(slider.value) > 0 || parseInt(slider2.value) > 0)
+{{% if player.id_in_group == 1 %}
+winP.innerHTML = Y(parseInt(slider.value), parseInt(slider2.value)).toFixed(0);
+NegpaD.innerHTML = negY(parseInt(slider.value), parseInt(slider2.value)).toFixed(0);
+{% else %}
+winP.innerHTML = myFunction(parseInt(slider.value), parseInt(slider2.value)).toFixed(0);
+NegpaD.innerHTML = negmyFunction(parseInt(slider.value), parseInt(slider2.value)).toFixed(0);
+{% endif %}
+} else {
+winP.innerHTML = "50";
+NegpaD.innerHTML = "50";
+}
+}
+othkeep.innerHTML = K(parseInt(slider.value));
+othWinPay.innerHTML = W(parseInt(slider.value));
+othLosePay.innerHTML = K(parseInt(slider.value));
+}
+
+output.oninput = function() {
+ slider.value = this.value;
+if(output2.value != "" ){if (parseInt(slider.value) > 0 || parseInt(slider2.value) > 0) {{% if player.id_in_group == 1 %}
+winP.innerHTML = Y(parseInt(slider.value), parseInt(slider2.value)).toFixed(0);
+NegpaD.innerHTML = negY(parseInt(slider.value), parseInt(slider2.value)).toFixed(0);
+{% else %}
+winP.innerHTML = myFunction(parseInt(slider.value), parseInt(slider2.value)).toFixed(0);
+NegpaD.innerHTML = negmyFunction(parseInt(slider.value), parseInt(slider2.value)).toFixed(0);
+{% endif %}
+} else {
+winP.innerHTML = "50";
+NegpaD.innerHTML = "50";
+}
+}
+othkeep.innerHTML = K(parseInt(slider.value));
+othWinPay.innerHTML = W(parseInt(slider.value));
+othLosePay.innerHTML = K(parseInt(slider.value));
+}
+
+slider2.oninput = function() {
+  output2.value = this.value;
+if(output2.value != "" ){if (parseInt(slider.value) > 0 || parseInt(slider2.value) > 0) {{% if player.id_in_group == 1 %}
+winP.innerHTML = Y(parseInt(slider.value), parseInt(slider2.value)).toFixed(0);
+NegpaD.innerHTML = negY(parseInt(slider.value), parseInt(slider2.value)).toFixed(0);
+{% else %}
+winP.innerHTML = myFunction(parseInt(slider.value), parseInt(slider2.value)).toFixed(0);
+NegpaD.innerHTML = negmyFunction(parseInt(slider.value), parseInt(slider2.value)).toFixed(0);
+{% endif %}
+} else {
+winP.innerHTML = "50";
+NegpaD.innerHTML = "50";
+}
+keep.innerHTML = K(parseInt(slider2.value));
+winPay.innerHTML = W(parseInt(slider2.value));
+winLose.innerHTML = K(parseInt(slider2.value));
+}
+}
+
+output2.oninput = function() {
+  slider2.value = this.value;
+if(output2.value != "" ){if (parseInt(slider.value) > 0 || parseInt(slider2.value) > 0) {{% if player.id_in_group == 1 %}
+winP.innerHTML = Y(parseInt(slider.value), parseInt(slider2.value)).toFixed(0);
+NegpaD.innerHTML = negY(parseInt(slider.value), parseInt(slider2.value)).toFixed(0);
+{% else %}
+winP.innerHTML = myFunction(parseInt(slider.value), parseInt(slider2.value)).toFixed(0);
+NegpaD.innerHTML = negmyFunction(parseInt(slider.value), parseInt(slider2.value)).toFixed(0);
+{% endif %}
+} else {
+winP.innerHTML = "50";
+NegpaD.innerHTML = "50";
+}
+keep.innerHTML = K(parseInt(slider2.value));
+winPay.innerHTML = W(parseInt(slider2.value));
+winLose.innerHTML = K(parseInt(slider2.value));
+NegpaD.innerHTML = K(paD).toFixed(0);
+}
+}
+
+
+
+</script>
+
+<button class="btn btn-primary btn-large">
+    Submit bids
+</button>
+
+
+{% endblock %}
+
+

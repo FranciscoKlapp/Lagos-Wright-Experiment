@@ -1,0 +1,36 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+   <b style="color:gray">Practice Quiz:  </b>
+{% endblock %}
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+     border: 2px solid black;
+    }
+
+</style>
+
+
+
+
+<div class="card bg-light ">
+
+       <div class="card-header">
+         <h4><center>
+Let's take a simple quiz about the <b style="color:blue"> Decentralized Goods Market </b>
+    </h4></center>
+  </div>
+            <div class="card-body">
+     In the following pages you'll have to use the slider to answer a few practice question
+     </div></div>
+<br>
+    {% next_button %}
+
+
+{% endblock %}

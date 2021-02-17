@@ -1,0 +1,172 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+{% block content %}
+<style>
+.button {
+  border: none;
+  color: white;
+  padding: 2px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 2px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: #e5e9ec;
+  color: black;
+  border: 2px solid #220FF7;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 12px;
+}
+
+.button1:hover {
+  background-color: #220ff7;
+  color: white;
+
+}
+
+.button2 {
+  background-color: #e5e9ec;
+  color: black;
+  border: 2px solid #1a0acc;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 12px;
+}
+
+.button2:hover {
+  background-color: #1a0acc;
+  color: white;
+}
+.btn-info {
+ background-color: #d3d3d3;
+ color: black;
+   border: 2px solid black;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 12px;
+}
+.btn-info:hover {
+  background-color: #708090;
+   border: 2px solid black;
+}
+
+.otree-btn-next {
+    border: 2px solid black;
+}
+.otree-btn-next:hover {
+    border: 2px solid black;
+}
+
+</style>
+<div class="card  ">
+
+       <div class="card-header">
+         <h5>
+             <b style="color:blue">Decentralized Goods Market</b><b>, Round {{player.round_number}}:</b><b style="color:gray"> You are a <b>Producer</b></b>
+    </h5>
+
+</div>
+    <div class="card-body">
+
+For this <b style="color:blue"> Goods Market round </b> you are a <b>Producer</b> and you just met with a potential <b>Consumer</b>. You have:
+        <br>
+        &nbsp;&nbsp;&nbsp; &bull; <b>{{player.tokens_begin}} Tokens </b>
+<br>
+        &nbsp;&nbsp;&nbsp; &bull; <b>{{payoff_aux0}} Points</b>
+<br>
+{% if player.other_player.token_offer < 0 %}
+
+        <i> But you counterpart (the Consumer) has <b>NO Tokens</b> to offer </i>
+        <br><br>
+
+ <input type="hidden" name="offer_accept" id="token_offer" />
+
+
+        <script>
+            document.getElementById('token_offer').value = 'False';
+
+        </script>
+
+
+    </div>
+</div>
+<br>
+ {% next_button %}
+{% else %}
+    <i> Your counterpart (the Consumer) has <b>{{player.other_player.tokens_begin}} Tokens</b> </i>
+        <br><br>
+
+      <div class="card-deck">
+ <div class="card bg-light">
+     <div class="card-header">
+
+         <b>You received the following offer:</b>
+     </div>
+            <div class="card-body">
+
+ {% for p in player.get_others_in_group %}
+
+                <b>{{p.token_offer}}  Tokens</b> in exchange of you producing for <b>{{p.output_request}} units of</b> <i><b style="color:blue">{{Constants.DM_good}}</b></i>:
+ {% endfor %} this correspond to  <b>{{implicit_price}} Token(s)per unit</b>
+<br>
+<br>
+
+        <center>
+<div>
+    <button name="offer_accept" class="button button1" value="True"><h5><b>Accept</b></h5>
+        (move on with <b>{{payoff_aux_accept}} Points</b> and <b>{{token_aux_accept}} Tokens</b>)  </button> <br><br>
+    <button name="offer_accept" class="button button2" value="False"><h5><b>Reject</b></h5>
+        (move on with <b>{{payoff_aux0}} Points</b> and <b>{{player.tokens_begin}} Tokens</b>)</button>
+
+</div></center>
+            </div></div></div>
+<br>
+        <b style="color:red"> Note: </b> You can check the <b>Points Table</b>  at the bottom of this screen
+
+<br>
+<br>
+
+<br>
+                <center>
+                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo"><b>Display Table</b></button>
+                    </center>
+  <div id="demo" class="collapse">
+      <div class="card-deck">
+ <div class="card bg-light">
+            <div class="card-body">
+
+
+ <table class="table table-sm" >
+    <thead>
+        <tr>
+            <th>Quantity</th>
+            <th>Consumer's Point Benefit</th>
+            <th>Producer's Point Cost</th>
+            <th>Benefit minus Cost (in Points)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>    <CENTER>   0 <br>1 <br> 2 <br> 3<br> 4  <br> 5 <br> 6 <br> 7<br> 8  <br> 9 <br> 10 <br> 11  <br> 12 <br> 13 <br> 14 <br> 15 <br> 16 <br> 17 <br> 18 <br> 19 <br> 20  </CENTER>
+                        </td>
+            <td>    <CENTER>   {{uq0}} <br>{{uq1}} <br> {{uq2}} <br> {{uq3}} <br> {{uq4}}  <br> {{uq5}} <br> {{uq6}} <br> {{uq7}}<br> {{uq8}}  <br> {{uq9}} <br> {{uq10}} <br> {{uq11}} <br>{{uq12}} <br>{{uq13}} <br>{{uq14}} <br> {{uq15}} <br> {{uq16}} <br> {{uq17}} <br>{{uq18}} <br>{{uq19}} <br>{{uq20}} </CENTER>
+                        </td>
+            <td>    <CENTER>   0 <br>1 <br> 2 <br> 3<br> 4  <br> 5 <br> 6 <br> 7<br> 8  <br> 9 <br> 10 <br> 11  <br> 12 <br> 13 <br> 14 <br> 15 <br> 16 <br> 17 <br> 18 <br> 19 <br> 20  </CENTER>
+                        </td>
+            <td>    <CENTER>   {{net_uq0}} <br>{{net_uq1}} <br> {{net_uq2}} <br> {{net_uq3}} <br> {{net_uq4}}  <br> {{net_uq5}} <br> {{net_uq6}} <br> {{net_uq7}}<br> {{net_uq8}}  <br> {{net_uq9}} <br> {{net_uq10}} <br> {{net_uq11}} <br>{{net_uq12}} <br>{{net_uq13}} <br>{{net_uq14}} <br> {{net_uq15}} <br> {{net_uq16}} <br> {{net_uq17}} <br>{{net_uq18}} <br>{{net_uq19}} <br>{{net_uq20}} </CENTER>
+                        </td>
+        </tr>
+
+    </tbody>
+</table>
+
+        </div>
+        </div>
+        </div>
+  </div> </div>
+{% endif %}
+      {% endblock %}
+

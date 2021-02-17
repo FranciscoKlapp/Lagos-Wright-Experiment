@@ -1,0 +1,57 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+
+{% block title %}
+    <b style="color:gray">The experiment has ended....</b>
+{% endblock %}
+
+
+
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          color:black;
+          background-color: #e5e9ec;
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+  background-color:  gray;
+  color: white;
+   border: 2px solid black;
+    }
+</style>
+<div class="card bg-light ">
+    <div class="card-header">
+        <h5>  <b style="color:gray">  There's no more time so the experiment has ended:</b> </h5>
+
+</div>
+
+    <div class="card-body">
+
+
+Thanks for participating and please make sure you complete the exit survey to collect your payment
+        <br>
+        <br>
+           &nbsp;&nbsp;&nbsp;&nbsp; &bull;<b> Sequence 1 ({{seq1}} Points)</b> and <b>Sequence 3 ({{seq3}} Points)</b> were randomly selected for your payment
+        <br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull; So you earned <b>{{participant.payoff}} Points</b>
+        <br>
+        <br>
+      &nbsp;&nbsp;&nbsp;&nbsp; &bull;  That is equivalent to <b>US${{real_money}}</b>  including your <b>US$7 show up fee</b>
+        <br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull;  Your payment code is <b>{{redemption_code}}</b>, please save it for future reference <b>(you can take a picture with your phone!)</b>
+
+
+</div>
+</div>
+<br>
+
+  {% next_button %}
+{% endblock %}
+
+

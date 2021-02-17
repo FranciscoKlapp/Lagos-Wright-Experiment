@@ -1,0 +1,222 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}<b style="color:gray">Practice Quiz - Question 2: Results</b>
+{% endblock %}
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+     border: 2px solid black;
+    }
+
+slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #1930ff;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #1930ff;
+  cursor: pointer;
+}
+
+.slidecontainer2 {
+  width: 100%;
+}
+
+.slider2 {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider2:hover {
+  opacity: 1;
+}
+
+.slider2::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #1930ff;
+  cursor: pointer;
+}
+
+.slider2::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #1930ff;
+  cursor: pointer;
+}
+
+div c {
+  text-align: right;
+  background-color: yellow;
+}
+
+    .otree-btn-next {
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+     border: 2px solid black;
+    }
+
+
+.btn-info {
+ background-color: #d3d3d3;
+ color: black;
+}
+.btn-info:hover {
+  background-color: #708090;;
+}
+
+
+
+</style>
+<div class="card bg-light ">
+
+       <div class="card-header">
+         <h5>
+  <h5 style="color:gray">
+        <b style="color:blue">Goods Market</b>
+</div>
+    <div class="card-body">
+
+
+<!IF OK!>
+{% if player.quiz_tokens_DM2_retry == 21 and player.quiz_output_DM2_retry == 7 %}
+
+
+        &nbsp;&nbsp;&nbsp; &bull;You offered <b>{{player.quiz_tokens_DM2_retry}} Tokens</b> for <b>{{player.quiz_output_DM2_retry}} units of {{Constants.DM_good}}</b> <br><br>
+
+        &nbsp;&nbsp;&nbsp; &bull; <b style="color:orange">That is exactly right!</b> Congratulations! <br><br>
+
+        By requesting <b>7 units of </b><i><b style="color:blue">{{Constants.DM_good}}</b></i> in exchange for <b>21 Tokens</b>  to get <b>9.54 Points</b> and achieved a <b>Price of 3 Tokens per unit</b>
+
+        <br> </div></div>
+<br>
+   {% next_button %}
+
+<! IF MISTAKE!>
+{% else %}
+
+
+        &nbsp;&nbsp;&nbsp; &bull;You offered <b>{{player.quiz_tokens_DM2_retry}} Tokens</b> for <b>{{player.quiz_output_DM2_retry}} units of </b><i><b style="color:blue">{{Constants.DM_good}}</b></i>  <br><br>
+
+        &nbsp;&nbsp;&nbsp; &bull; <b style="color:red">That is again NOT correct</b>   <br><br>
+
+        You should have requested <b>7 units of </b><i><b style="color:blue">{{Constants.DM_good}}</b></i> in exchange for <b>21 Tokens</b> to get <b>9.54 Points</b> and achieve a <b>Price of 3 Tokens per unit</b>
+
+        </div></div>
+<br>
+   {% next_button %}
+
+
+
+
+
+
+{% endif %}
+
+       <script>
+
+
+
+
+var slider = document.getElementById("myRange1");
+var output = document.getElementById("demo1");
+var Cost = document.getElementById("Cost");
+var ConsumerBenefit = document.getElementById("ConsumerBenefit");
+var Surplus =  document.getElementById("Surplus");
+
+var slider2 = document.getElementById("myRange2");
+var output2 = document.getElementById("demo2");
+
+var winP2 = document.getElementById("WinP2");
+
+var mu = js_vars.mu;
+var eta =js_vars.eta;
+
+
+function myU(a,mu,eta) {
+return (mu*a**eta)/eta;
+}
+
+function myC(a) {
+return a;
+}
+
+function myB(a) {
+return (mu*a**eta)/eta - a;
+}
+
+function Y(a, b) {
+return a/b;
+}
+
+
+slider.oninput = function() {
+ output.value = this.value;
+ConsumerBenefit.innerHTML =  myU(parseFloat(slider.value),mu,eta).toFixed(2);
+Cost.innerHTML = myC(parseFloat(slider.value)).toFixed(2);
+Surplus.innerHTML = myB(parseFloat(slider.value)).toFixed(2);
+ winP2.innerHTML = Y(parseFloat(slider2.value), parseFloat(slider.value)).toFixed(2);
+}
+
+slider2.oninput = function() {
+ output2.value = this.value;
+ winP2.innerHTML = Y(parseFloat(slider2.value), parseFloat(slider.value)).toFixed(2);
+}
+
+
+
+</script>
+
+
+    </div></div>
+<br>
+
+
+
+
+{% endblock %}

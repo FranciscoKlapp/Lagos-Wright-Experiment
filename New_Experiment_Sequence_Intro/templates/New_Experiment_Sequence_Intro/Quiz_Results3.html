@@ -1,0 +1,64 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}<b style="color:gray">Practice Quiz 2 - Question 2: Results</b>
+{% endblock %}
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          color:white;
+          background-color: #4CAF50; //#e5e9ec;
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+  background-color:  #3d8c40;
+  color: white;
+  border: 2px solid black;
+    }
+
+
+</style>
+<div class="card bg-light ">
+
+       <div class="card-header">
+         <h5>
+  <h5 style="color:gray">
+        <b style="color:green">Token Exchange</b>
+</div>
+    <div class="card-body">
+
+
+<!IF OK!>
+{% if player.quiz_choose_2 == 'Buyer' %}
+
+
+        &nbsp;&nbsp;&nbsp; &bull;You  selected to be a <b>Token Seller</b><br><br>
+
+        &nbsp;&nbsp;&nbsp; &bull; <b style="color:orange">That is exactly right!</b> Congratulations! <br><br>
+
+        By selecting to enter the <b style="color:green">Token Exchange</b> as a <b>Token Seller</b> you can get <b>Points</b> in exchange for some of your <b>Tokens</b>
+<br>
+
+<! IF MISTAKE!>
+{% else %}
+
+
+        &nbsp;&nbsp;&nbsp; &bull;You  selected to be a <b>Token Buyer</b><br><br>
+
+        &nbsp;&nbsp;&nbsp; &bull; <b style="color:red">That is  NOT correct</b>   <br><br>
+
+        You should have selected  to enter the <b style="color:green">Toke nExchange</b> as a <b>Consumer</b>  as a <b>Token Seller</b> you could  get <b>Points</b> in exchange for some of your <b>Tokens</b>
+
+
+
+
+
+{% endif %}
+
+
+</div> </div>
+<br>
+{% next_button %}
+
+{% endblock %}

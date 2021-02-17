@@ -1,0 +1,34 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+   <b style="color:gray">Instructions: </b>
+{% endblock %}
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+     border: 2px solid black;
+    }
+
+</style>
+
+
+
+
+<div class="card bg-light ">
+
+       <div class="card-header">
+         <h4><center>
+   <b style="color:blue">  Decentralized Goods Market </b> —first part of each round
+    </h4></center>
+
+       </div></div>
+<br>
+    {% next_button %}
+
+
+{% endblock %}

@@ -1,0 +1,441 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+
+{% block title %}
+   <b style="color:gray">Instructions:</b>
+{% endblock %}
+
+
+
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          color:white;
+          background-color: #4CAF50; //#e5e9ec;
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+  background-color:  #3d8c40;
+  color: white;
+  border: 2px solid black;
+    }
+
+
+.btn-info {
+ background-color:green; //#4CAF50;
+ color: white;
+  border: 2px solid black;//#3d8c40;
+   border-radius: 12px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.btn-info:hover {
+  background-color: #3d8c40;
+}
+
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+.slidecontainer2 {
+  width: 75%;
+}
+
+.slider2 {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider2:hover {
+  opacity: 1;
+}
+
+.slider2::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 10%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider2::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.
+.slidecontainer3 {
+  width: 100%;
+}
+
+.slider3 {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider3:hover {
+  opacity: 1;
+}
+
+.slider3::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider3::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+
+.slidecontainer4 {
+  width: 75%;
+}
+
+.slider4 {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider4:hover {
+  opacity: 1;
+}
+
+.slider4::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 10%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider4::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+    input[type=text]:disabled {
+  background: white;
+}
+
+
+</style>
+
+<div class="card bg ">
+    <div class="card-header">
+         <h5>
+        <b style="color:green">Token Exchange</b> — Trading Points and Tokens
+    </h5>
+</div>
+    <div class="card-body">
+        &bull; You'll first  choose whether to be a <b>Token Seller</b> or <b>Token Buyer</b> and then use a slider to decide how many <b>Tokens</b> to sell or <B>Points</B> to bid
+        <br>
+        <br>
+        &bull; You can also use a second slider to state your belief about the <i><b style="color:green">Market Price</b></i> for the round: you'll see how many <b>Points</b> you'd get as a <b>Token Seller</b> or <b>Tokens</b> as a <b>Token Buyer</b>
+
+         <br>  <br>
+        &bull; The history of past <i><b style="color:green">Market Prices</b></i> will always be available for you
+
+
+
+
+            <!--
+<div class="accordion" id="myAccordion">
+
+
+    <h2 class="mb-0">
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#collapseOne"><b>Token Seller</b> </button>
+    </h2>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#myAccordion">
+
+           <div class="card bg-light ">
+                        <div class="card-header">
+                            <b> How many <b>Tokens</b> would you like to sell?</b>
+
+                        </div>
+           <div class="card-body">
+
+    <div class="slidecontainer">
+  <input type="range" min="0" step='0.1' max="20"  value="0" class="slider" id="myRange1" name="">
+     <label for="myRange1"></label>
+    Your <b>Token</b> offer: <input type="text" id="demo1" style="width: 4em" onkeypress="return event.keyCode != 13;" disabled> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+    </div>
+
+<br>
+<br>
+
+               <b style="color:gray"> REMEMBER:</b> How many <b>Points</b> you get will depend on the <b style="color:green">Market Price</b>, you can use this 2nd slider to inform your decision
+               <br>       <br>
+
+
+<div class="slidecontainer2">
+  <input type="range" min="0" step='0.1' max='3'  value="0" class="slider2" id="myRange2" name="">
+     <label for="myRange2"></label>
+    Your <b style="color:green"> Market Price (Tokens per Point)</b> prediction: <input type="text" id="demo2" style="width: 4em" onkeypress="return event.keyCode != 13;" disabled>
+
+</div>
+    <br>
+    <br>
+
+
+    <table class="table">
+  <tr>
+      <td><b>Points</b> to be received given the predicted <b style="color:green">Market Price </b> :</td> <td><b><span id="ConsumerB"> </span></b></td>
+  </tr>
+</table>
+
+
+</div>
+   </div>
+    </div>
+
+
+<br>
+
+
+    <h2 class="mb-0">
+        <button type="button" class="btn btn-info collapsed" data-toggle="collapse" data-target="#collapseThree"><b>Token Buyer</b></button>
+    </h2>
+
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#myAccordion">
+
+         <div class="card bg-light ">
+                        <div class="card-header">
+                            <b>  How many <b>Points</b> would you like to offer?</b>
+
+</div>
+           <div class="card-body">
+
+<div class="slidecontainer3">
+  <input type="range" min="0" step='0.1' max="20"  value="0" class="slider3" id="myRange3" name="">
+     <label for="myRange3"></label>
+    Your <b>Point</b> bid: <input type="text" id="demo3" style="width: 4em" onkeypress="return event.keyCode != 13;" disabled> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+</div>
+
+<br>
+<br>
+
+               <b style="color:gray"> REMEMBER:</b> How many <b>Tokens</b> you get will depend on <b style="color:green">Market Price</b>, you can use this slider to inform your decision
+               <br>       <br>
+
+
+<div class="slidecontainer4">
+  <input type="range" min="0" step='0.1' max='3'  value="0" class="slider4" id="myRange4" name="">
+     <label for="myRange4"></label>
+    Your <b style="color:green"> Market Price (Tokens per Point) prediction:</b> <input type="text" id="demo4" style="width: 4em" onkeypress="return event.keyCode != 13;" disabled>
+
+</div>
+     <br>
+    <br>
+    <table class="table">
+  <tr>
+      <td> <b> Tokens</b> to earn given the predicted price:</td>  <td><b><span id="TokenB"> </span> </b></td>
+  </tr>
+</table>
+
+
+
+
+
+
+
+
+</div>
+</div>
+
+
+    </div>
+
+</div>
+</center>
+
+
+-->
+
+
+        </div>
+</div>
+</div>
+<br>
+
+ {% next_button %}
+
+<script>
+var slider = document.getElementById("myRange1");
+var output = document.getElementById("demo1");
+
+var slider2 = document.getElementById("myRange2");
+var output2 = document.getElementById("demo2");
+var ConsumerB = document.getElementById("ConsumerB");
+
+
+function Y(a, b) {
+return a/b;
+}
+
+
+
+slider.oninput = function() {
+ output.value = this.value;
+ if (parseFloat(slider.value) > 0 && parseFloat(slider2.value) > 0){
+ ConsumerB.innerHTML = Y(parseFloat(slider.value), parseFloat(slider2.value)).toFixed(2);
+ } else if (parseFloat(slider.value) == 0 && parseFloat(slider2.value) > 0) {
+ ConsumerB.innerHTML = "Use 1st slider to bid";
+} else{
+ConsumerB.innerHTML = "Use 2nd slider to make prediction";
+}
+
+}
+
+slider2.oninput = function() {
+ output2.value = this.value;
+ if (parseFloat(slider.value) > 0 && parseFloat(slider2.value) > 0){
+ ConsumerB.innerHTML = Y(parseFloat(slider.value), parseFloat(slider2.value)).toFixed(2);
+ } else if (parseFloat(slider.value) == 0 && parseFloat(slider2.value) > 0) {
+ ConsumerB.innerHTML = "Use 1st slider to bid";
+} else{
+ConsumerB.innerHTML = "Use 2nd slider to make prediction";
+}
+
+}
+
+
+
+
+
+
+
+
+var slider3 = document.getElementById("myRange3");
+var output3 = document.getElementById("demo3");
+
+var slider4 = document.getElementById("myRange4");
+var output4 = document.getElementById("demo4");
+var TokenB = document.getElementById("TokenB");
+
+
+function YY(a, b) {
+return a*b;
+}
+
+
+
+slider3.oninput = function() {
+ output3.value = this.value;
+ if (parseFloat(slider3.value) > 0 && parseFloat(slider4.value) > 0){
+ TokenB.innerHTML = YY(parseFloat(slider3.value), parseFloat(slider4.value)).toFixed(2);
+ } else if (parseFloat(slider3.value) == 0 && parseFloat(slider4.value) > 0) {
+ TokenB.innerHTML = "Use 1st slider to select production";
+} else{
+TokenB.innerHTML = "Use 2nd slider to make prediction";
+}
+
+}
+
+slider4.oninput = function() {
+ output4.value = this.value;
+ if (parseFloat(slider3.value) > 0 && parseFloat(slider4.value) > 0){
+ TokenB.innerHTML = YY(parseFloat(slider3.value), parseFloat(slider4.value)).toFixed(2);
+ } else if (parseFloat(slider3.value) == 0 && parseFloat(slider4.value) > 0) {
+ TokenB.innerHTML = "Use 1st slider to select production";
+} else{
+TokenB.innerHTML = "Use 2nd slider to make prediction";
+}
+
+}
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+

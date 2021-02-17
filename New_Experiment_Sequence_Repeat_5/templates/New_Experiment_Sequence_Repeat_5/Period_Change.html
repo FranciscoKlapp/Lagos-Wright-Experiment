@@ -1,0 +1,61 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+
+{% block title %}
+        {% if dice == 1 %}
+          <img src="https://i.imgur.com/u3h8bZd.jpg" width=8% height=8%/>
+        {% elif dice == 2 %}
+          <img src="https://i.imgur.com/0XAgGMT.jpg" width=8% height=8%/>
+        {% elif dice == 3 %}
+        <img src="https://i.imgur.com/Sdyq2xr.jpg" width=8% height=8%/>
+         {% elif dice == 4 %}
+          <img src="https://i.imgur.com/plxX4Wg.jpg" width=8% height=8%/>
+        {% else %}
+         <img src="https://i.imgur.com/egiMCXN.jpg" width=8% height=8%/>
+        {% endif %}
+ <b style="color:gray">The sequence continues for another round...</b>
+{% endblock %}
+
+
+
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          color:black;
+          background-color: #e5e9ec;
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+  background-color:  gray;
+  color: white;
+   border: 2px solid black;
+    }
+</style>
+
+<div class="card bg-light ">
+    <div class="card-header">       <h5>
+        A  {{dice}} was rolled so the sequence continues:<br>  &#8594  You will now start Round {{subsession.round_number}} of this sequence
+    </h5>
+</div>
+
+    <div class="card-body">
+    <h5>  <b style="color:gray">  Remember:</b> </h5>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull;You have <b>{{player.tokens_begin}} tokens</b>
+        <br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &bull; And you've <b> earned {{participant.payoff}} Points </b> so far on top of your initial <b>{{Constants.point_endowment}} Points</b>  &#8594; For a <b>Total of {{payoff_aux3}} Points</b> <br>
+<br>
+
+
+</div>
+</div>
+<br>
+    {% next_button %}
+
+{% endblock %}
+
+

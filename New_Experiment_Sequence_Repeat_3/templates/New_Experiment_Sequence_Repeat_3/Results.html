@@ -1,0 +1,110 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}<b style="color:blue">Decentralized Goods Market </b>: Results{% endblock %}
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+     border: 2px solid black;
+    }
+
+
+
+</style>
+<div class="card bg-light ">
+
+       <div class="card-header">
+         <h5>
+  <h5 style="color:gray">
+     <b>Your Results, Round {{player.round_number}}:</b>
+</div>
+    <div class="card-body">
+
+
+<! FOR THE SELLER!>
+{% if player.id_in_group == 2%}
+
+    {% if player.other_player.token_offer < 0 %}
+
+        Your counterpart had <b> NO Tokens </b>, so there was no offer:
+        <br>
+
+                &nbsp;&nbsp;&nbsp; &bull; Your payoff for this round is therefore <b> 0 Points</b>
+
+    {% else %}
+    &nbsp;&nbsp;&nbsp; &bull; Consumer offered you
+    {% for p in player.get_others_in_group %}
+        <b> {{p.token_offer}} Tokens</b> for <b>{{p.output_request}} units of</b> <i><b style="color:blue">{{Constants.DM_good}}</b></i>
+    {% endfor %}
+    <br> <br>
+
+    &nbsp;&nbsp;&nbsp; &bull; You
+    {% if player.offer_accept == True%}
+    <b style="color:orange"><i>Accepted</i></b> this offer with a price of <b>{{player.implicit_price}} Token(s)</b> per unit of <i><b style="color:blue">{{Constants.DM_good}}</b></i> <br> <br>
+    {% for p in player.get_others_in_group %}
+                &nbsp;&nbsp;&nbsp; &bull; Thus you got <b>{{p.token_offer}} Tokens</b>  but lost  <b>{{player.payoff1}} Points</b> as production cost
+      {% endfor %}
+    {% else %}
+    <b style="color:red"><i>Rejected</i></b> this offer <br> <br>
+        &nbsp;&nbsp;&nbsp; &bull; Your payoff for this round is therefore <b> 0 Points</b>
+    {% endif %}
+
+{% endif %}
+<br> <br>
+ You now hold:  <br>
+        &nbsp;&nbsp;&nbsp; &bull;<b>{{player.tokens_end}} Tokens</b> <br>
+        &nbsp;&nbsp;&nbsp; &bull;<b>{{payoff_aux}} Points</b>
+
+
+<br>
+
+
+<! FOR THE BUYER!>
+{% else %}
+    {% if player.token_offer < 0 %}
+
+        You had <b> NO Tokens </b> to make an offer:
+        <br>
+
+                &nbsp;&nbsp;&nbsp; &bull; Your payoff for this round is therefore <b> 0 Points</b>
+
+    {% else %}
+
+
+        &nbsp;&nbsp;&nbsp; &bull;You offered <b>{{player.token_offer}} Tokens</b> for <b>{{player.output_request}} units of</b> <i><b style="color:blue">{{Constants.DM_good}}</b></i>
+    <br><br>
+    &nbsp;&nbsp;&nbsp; &bull; Your offer was
+    {% for p in player.get_others_in_group %}
+        {% if p.offer_accept == True%}
+        <b style="color:orange"><i>Accepted</i></b> with a price of <b>{{player.implicit_price}} Token(s)</b> per unit of <i><b style="color:blue">{{Constants.DM_good}}</b></i>
+
+        <br><br> &nbsp;
+        &nbsp;&nbsp;&bull; Thus you got <b> {{player.output_request}} units of</b> <i><b style="color:blue">{{Constants.DM_good}}</b></i>  (and the corresponding payoff of <b>{{player.payoff1}} Points</b>) but paid <b>{{player.token_offer}} Tokens</b>
+        {% else %}
+        <b style="color:red"><i>Rejected</i></b>
+        <br> <br>
+        &nbsp;&nbsp;&nbsp; &bull; Your payoff for this round is therefore <b> 0 Points</b>
+        {% endif %}
+    {% endfor %}
+    {% endif %}
+<br>
+<br>
+ You now hold:  <br>
+        &nbsp;&nbsp;&nbsp; &bull;<b>{{player.tokens_end}} Tokens</b> <br>
+        &nbsp;&nbsp;&nbsp; &bull;<b>{{payoff_aux}} Points</b>
+
+{% endif %}
+
+
+
+    </div></div>
+<br>
+
+
+{% next_button %}
+
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+
+{% block title %}
+<style>
+    .otree-btn-next {
+          color:white;
+          background-color: #4CAF50; //#e5e9ec;
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+  background-color:  #3d8c40;
+  color: white;
+  border: 2px solid black;
+    }
+
+
+.btn-info {
+ background-color: #d3d3d3;
+ color: black;
+   border: 2px solid black;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 12px;
+}
+.btn-info:hover {
+  background-color: #708090;
+   border: 2px solid black;
+}
+
+</style>
+
+   <b style="color:gray">Instructions:</b>
+{% endblock %}
+
+
+
+
+{% block content %}
+<style>
+    .otree-btn-next {
+          border: 2px solid black;
+    }
+    .otree-btn-next:hover {
+     border: 2px solid black;
+
+    }
+
+</style>
+<div class="card bg-light ">
+
+       <div class="card-header">
+         <h4><center>
+ <b style="color:green"> Centralized Token Exchange </b> —second part of each round:
+   </center>  </h4>
+
+       </div></div>
+<br>
+
+
+
+
+    <div class="card-body">
+
+        <div class="card">
+        <div class="card bg-light ">
+             <div class="card-header">
+  <h5>
+      <b style="color:green" >Token Exchange </b> — Overview
+    </h5>
+</div>
+        <div class="card-body">
+<!--            &bull; Second part of each <b> <i>round</i></b>
+            <br>
+            <br> -->
+             &bull; All {{session.num_participants}} participants have the opportunity to interact in a single
+<b style="color:green">Centralized Token Exchange</b>
+            <br>
+            <br>
+            &bull; Each participant <b>decides</b> in each round whether to become a:
+            <br>
+            &nbsp; &nbsp; &nbsp; &nbsp; <b>- Token Buyer:</b> Use some of your <b>Points</b> to bid for <b>Tokens</b>
+            <br>
+            &nbsp; &nbsp; &nbsp; &nbsp; <b>- Token Seller:</b> Sell some of your <b>Tokens</b> to get <b>Points</b>
+            <br>
+            <br>
+            How many <b>Tokens</b> you get as <b>Token Buyer</b> or how many <b>Points</b> as a <b>Token Seller</b> depends on the resulting <i><b style="color:green" >Market Price (Tokens per Point)</b></i>
+            <br>
+            <br>
+            &bull; <i><b style="color:green" >Market Price</b></i>  depends on current demand and supply and is only known to you after you make your decision
+
+            <br>
+            <br>
+
+
+            <center>
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo"> <b> Next </b></button>
+  <div id="demo" class="collapse">
+       <div class="card">
+           <div class="card-body">
+               <h7 style="color:black"><center><b>REMEMBER:</b> You <b style="color:red">DO NOT KNOW</b>  what the <i> <b style="color:green">Market Price</b></i> will be when you are deciding how much to bid or sell. It is only determined afterwards, so you'd want to think about what it will be.</center> </h7>
+           </div> </div>
+      <br>
+      {% next_button %}
+
+
+</div>
+
+
+
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<br>
+
+
+{% endblock %}
+
